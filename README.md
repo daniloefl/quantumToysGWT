@@ -1,10 +1,11 @@
 # quantumToysGWT
 
-This is a Web Application built using Google
-Web Toolkit 2.8.0 to transform Java into JavaScript.
+This solves the Schroedinger equation in 1D using the Numerov method.
+It has two interfaces: one is built using the Google Web Toolkit and compiles
+Java into JaveScript to be shown in a Web browser. The other generates a Java
+Web Start application, which can be loaded if the user has Java installed in his/her computer.
 
-It solves the Schroedinger equation in 1D using the Numerov method
-and shows the result on the web page.
+# Installing the Google Web Toolkit implementation
 
 To compile, please unzip the Google Web Toolkit, update this line of build.xml to
 point to your installation of the Google Web Toolkit:
@@ -16,13 +17,37 @@ point to your installation of the Google Web Toolkit:
 and compile it as follows:
 
 ```
-ant build
+ant gwtc
 ```
 
 You can then open war/SchroedingerWebApp.html in a browser.
 
-Please read doc/QuantumToys/client/SchroedingerCalculator.html for information
-on the details of what it does.
+# Installing the Java Web Start implementation
+
+This assumes that your Java Web Start libraries are available in /usr/share/icedtea-web/netx.jar.
+If that is not the case, please change the following line in build.xml:
+
+```
+    <pathelement location="/usr/share/icedtea-web/netx.jar"/>
+```
+
+To compile, simply type:
+
+```
+ant jws
+```
+
+The compiled result will be in the directory `jws_bin`. To run it, one can either open the file
+`jws_bin/SchroedingerSolver.jnlp` in a browser or type:
+
+```
+javaws jws_bin/SchroedingerSolver.jnlp
+```
+
+# More information
+
+Please read doc/QuantumToys/shared/SchroedingerCalculator.html for information
+on the details of what it does. The Java documentation should contain most relevant information.
 
 For more information, please contact the author at:
 Danilo Ferreira de Lima <daniloefl@gmail.com>
