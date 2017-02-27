@@ -1,0 +1,77 @@
+<!doctype html>
+<!-- The DOCTYPE declaration above will set the     -->
+<!-- browser's rendering engine into                -->
+<!-- "Standards Mode". Replacing this declaration   -->
+<!-- with a "Quirks Mode" doctype is not supported. -->
+
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+    <!--                                                               -->
+    <!-- Consider inlining CSS to reduce the number of requested files -->
+    <!--                                                               -->
+    <link type="text/css" rel="stylesheet" href="SchroedingerWebApp.css">
+
+    <!--                                           -->
+    <!-- Any title is fine                         -->
+    <!--                                           -->
+    <title>Web Application Starter Project</title>
+    
+    <!--                                           -->
+    <!-- This script loads your compiled module.   -->
+    <!-- If you add any GWT meta tags, they must   -->
+    <!-- be added before this line.                -->
+    <!--                                           -->
+    <script type="text/javascript" language="javascript" src="schroedingerwebapp/schroedingerwebapp.nocache.js"></script>
+  </head>
+
+  <!--                                           -->
+  <!-- The body can have arbitrary html, or      -->
+  <!-- you can leave the body empty if you want  -->
+  <!-- to create a completely dynamic UI.        -->
+  <!--                                           -->
+  <body>
+
+    <!-- RECOMMENDED if your web app will not function without JavaScript enabled -->
+    <noscript>
+      <div style="width: 22em; position: absolute; left: 50%; margin-left: -11em; color: red; background-color: white; border: 1px solid red; padding: 4px; font-family: sans-serif">
+        Your web browser must have JavaScript enabled
+        in order for this application to display correctly.
+      </div>
+    </noscript>
+
+    <h1>Schroedinger equation solver</h1>
+
+    <table align="center">
+      <tr>
+        <td colspan="2" id="autoRange"></td>
+        <td colspan="2" id="logGrid"></td>
+        <td colspan="2" id="labelConverge"></td>
+        <td colspan="2" id="labelEnergy"></td>
+      </tr>
+      <tr>
+        <td id="labelXmin"></td>
+        <td id="xmin"></td>
+        <td id="labelXmax"></td>
+        <td id="xmax"></td>
+        <td id="labelNpoints"></td>
+        <td id="Npoints"></td>
+        <td colspan="2" id="go"></td>
+      </tr>
+      <tr>
+        <td id="labelN"></td>
+        <td id="n"></td>
+        <td id="labelPot"></td>
+        <td id="pot"></td>
+        <td id="labelIter"></td>
+        <td id="iter"></td>
+        <td id="labelAlpha"></td>
+        <td id="alpha"></td>
+      </tr>
+      <tr>
+        <td colspan="8" id="psiChart"></td>
+      </tr>
+    </table>
+  </body>
+</html>
