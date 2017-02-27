@@ -5,6 +5,14 @@ It has two interfaces: one is built using the Google Web Toolkit and compiles
 Java into JavaScript to be shown in a Web browser. The other generates a Java
 Web Start application, which can be loaded if the user has Java installed in his/her computer.
 
+The JavaScript version of the application can be accessed in the documentation
+web site of this project:
+<https://daniloefl.github.io/quantumToysGWT/QuantumToys/SchroedingerWebApp.html>
+
+However, the Java Web Start version allows for better customisation of the axes,
+it is faster, and allows for a larger variety of math functions when choosing the
+potential function.
+
 The Java Web Start application can be directly accessed from the documentation.
 You can see this in action by opening this link in a browser:
 <https://daniloefl.github.io/quantumToysGWT/QuantumToys/SchroedingerSolver.jnlp>
