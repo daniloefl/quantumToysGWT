@@ -148,4 +148,11 @@ Test targets suppressed because -junit argument was not specified when running w
     <delete dir="war/schroedingerwebapp" failonerror="false" />
   </target>
 
+  <target name="doc" description="Generate documentation">
+    <javadoc destdir="doc" sourcepath="src/QuantumToys" excludepackagenames="com.google.gwt.user.client,com.google.gwt.widgetideas.graphics.client,com.googlecode.gchart.client">
+      <fileset dir="src/QuantumToys/client" includes="**/*.java" /> 
+      <classpath refid="project.class.path"/>
+    </javadoc>
+  </target>
+
 </project>
