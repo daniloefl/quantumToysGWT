@@ -120,11 +120,18 @@
       <fileset dir="src/QuantumToys" includes="**/*.java" /> 
       <classpath refid="project.class.path"/>
     </javadoc>
+
     <copy todir="docs/QuantumToys" file="jws_bin/SchroedingerSolver.jar"/>
     <copy todir="docs/QuantumToys" file="src/SchroedingerSolver.jnlp"/>
     <copy todir="docs/QuantumToys" file="src/jcommon-1.0.16.jar"/>
     <copy todir="docs/QuantumToys" file="src/jfreechart-1.0.13.jar"/>
     <copy todir="docs/QuantumToys" file="src/exp4j-0.4.8.jar"/>
+
+    <copy todir="docs/QuantumToys" file="war/SchroedingerWebApp.html"/>
+    <copy todir="docs/QuantumToys" file="war/SchroedingerWebApp.css"/>
+    <copy todir="docs/QuantumToys/schroedingerwebapp">
+      <fileset dir="war/schroedingerwebapp" includes="**"/>  
+    </copy>
   </target>
 
 </project>
