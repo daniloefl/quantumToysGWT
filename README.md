@@ -21,6 +21,9 @@ ant build
 
 You can then open war/SchroedingerWebApp.html in a browser.
 
+Please read doc/QuantumToys/client/SchroedingerCalculator.html for information
+on the details of what it does.
+
 For more information, please contact the author at:
 Danilo Ferreira de Lima <daniloefl@gmail.com>
 
