@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<jnlp spec="1.0+" codebase="https://daniloefl.github.io/" href="SchroedingerSolver.jnlp">
+<jnlp spec="1.0+" codebase="https://daniloefl.github.io/quantumToysGWT" href="SchroedingerSolver.jnlp">
 	<information>
 		<title>Schroedinger Solver</title>
 		<vendor>Danilo Ferreira de Lima</vendor>
