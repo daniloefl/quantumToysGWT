@@ -17,12 +17,9 @@ and compile it as follows:
 
 ```
 ant build
-ant devmode
 ```
 
-This will test it with a development server.
-One can install the result, by moving the Javascript and HTML files from the
-war directory into anywhere else.
+You can then open war/SchroedingerWebApp.html in a browser.
 
 For more information, please contact the author at:
 Danilo Ferreira de Lima <daniloefl@gmail.com>
