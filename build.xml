@@ -110,8 +110,8 @@
     <delete dir="war/schroedingerwebapp" failonerror="false" />
   </target>
 
-  <target name="doc" depends="jws" description="Generate documentation">
-    <javadoc use="true" destdir="doc" additionalparam="--allow-script-in-comments" sourcepath="src/QuantumToys" excludepackagenames="com.google.gwt.user.client,com.google.gwt.widgetideas.graphics.client,com.googlecode.gchart.client">
+  <target name="docs" depends="jws" description="Generate documentation">
+    <javadoc use="true" destdir="docs" additionalparam="--allow-script-in-comments" sourcepath="src/QuantumToys" excludepackagenames="com.google.gwt.user.client,com.google.gwt.widgetideas.graphics.client,com.googlecode.gchart.client">
       <header><![CDATA[
 <script type="text/javascript" async
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
@@ -120,11 +120,11 @@
       <fileset dir="src/QuantumToys" includes="**/*.java" /> 
       <classpath refid="project.class.path"/>
     </javadoc>
-    <copy todir="doc" file="jws_bin/SchroedingerSolver.jar"/>
-    <copy todir="doc" file="src/SchroedingerSolver.jnlp"/>
-    <copy todir="doc" file="src/jcommon-1.0.16.jar"/>
-    <copy todir="doc" file="src/jfreechart-1.0.13.jar"/>
-    <copy todir="doc" file="src/exp4j-0.4.8.jar"/>
+    <copy todir="docs" file="jws_bin/SchroedingerSolver.jar"/>
+    <copy todir="docs" file="src/SchroedingerSolver.jnlp"/>
+    <copy todir="docs" file="src/jcommon-1.0.16.jar"/>
+    <copy todir="docs" file="src/jfreechart-1.0.13.jar"/>
+    <copy todir="docs" file="src/exp4j-0.4.8.jar"/>
   </target>
 
 </project>
