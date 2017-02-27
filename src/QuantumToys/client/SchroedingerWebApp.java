@@ -213,7 +213,7 @@ public class SchroedingerWebApp implements EntryPoint {
           xmin.setText(Double.toString(m_calc.xmin));
           xmax.setText(Double.toString(m_calc.xmax));
           alpha.setText(Double.toString(m_calc.m_alpha));
-          pot.setText("-1/x+0.25/(2*x^2)"); // set potential to the Hydrogen potential
+          pot.setText("-1/x+0.25/(2*x*x)"); // set potential to the Hydrogen potential
         } else {
           m_calc.setLogGrid(false);
           xmin.setText(Double.toString(m_calc.xmin));

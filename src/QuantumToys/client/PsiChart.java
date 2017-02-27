@@ -98,10 +98,18 @@ public class PsiChart extends GChart {
     double E = calc.getDatasetEnergy(x, potential);
     getCurve(2).clearPoints();
     getCurve(3).clearPoints();
+    double Emax = E+10*Math.abs(E);
+    double Emin = E-2*Math.abs(E);
     for (int k = 0; k < calc.N; ++k) {
-      getCurve(2).addPoint(x[k], potential[k]);
+      if (potential[k] < Emin) Emin = potential[k];
+      //if (potential[k] > Emax) Emax = potential[k];
+      if (potential[k] <= Emax)
+        getCurve(2).addPoint(x[k], potential[k]);
       getCurve(3).addPoint(x[k], E);
     }
+
+    getY2Axis().setAxisMax(Emax);
+    getY2Axis().setAxisMin(Emin);
   }
 
 }

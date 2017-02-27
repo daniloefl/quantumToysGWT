@@ -72,7 +72,6 @@ import java.util.*;
  *
  * @author Danilo Enoque Ferreira de Lima <daniloefl@gmail.com>
  * @version %I%, %G%
- * @see QuantumToys.SchroedingerSolver
  */
 public class SchroedingerCalculator {
 
@@ -109,7 +108,7 @@ public class SchroedingerCalculator {
     public double def_xmin = -8;
     public double def_xmax = 8;
     public int def_N = 1000;
-    public String def_pot = "x^2/2";
+    public String def_pot = "x*x*0.5";
     public int def_n = 0;
     public int def_iter = 100;
     public double def_alpha = 1;
@@ -316,6 +315,13 @@ public class SchroedingerCalculator {
     }
 
     /**
+     * Evaluates mathematical expression using JavaScript.
+     * @param op (required) String to evaluate with only numbers.
+     * @return The double result.
+     */
+    public native double calculateMath(String op) /*-{ return eval(op); }-*/;
+
+    /**
      * Evaluates mathematical expression.
      * @param s (required) Expression to evaluate.
      * @param sx (required) Variable.
@@ -323,64 +329,10 @@ public class SchroedingerCalculator {
      * @return Expression value for x = vx.
      */
     public double evaluate(String s, String sx, Double vx) {
-        return vx*vx/2.0;
-        /*
         // split string in sums or differences
-        int par = s.indexOf("(");
-        if (par >= 0) {
-            int end = par;
-            int count = 1;
-            for (int k = par+1; k < s.length(); ++k) {
-                if (s.charAt(k) == '(') count++;
-                if (s.charAt(k) == ')') count--;
-                if (count == 0) {
-                    end = k;
-                    break;
-                }
-            }
-            String before = s.substring(0, par-1);
-            String after = s.substring(end+1, s.length());
-            String middle = s.substring(par, end);
-            double v = evaluate(middle, sx, vx);
-            String updated = before+Double.toString(v)+after;
-            return evaluate(updated, sx, vx);
-        }
-        String [] sums = s.split("+");
-        if (sums.length != 0) {
-            double v = 0;
-            for (int k = 0; k < sums.length; ++k) v += evaluate(sums[k], sx, vx);
-            return v;
-        }
-        String [] diff = s.split("-");
-        if (diff.length != 0) {
-            double v = 0;
-            for (int k = 0; k < diff.length; ++k) v -= evaluate(diff[k], sx, vx);
-            return v;
-        }
-        String [] mul = s.split("*");
-        if (mul.length != 0) {
-            double v = 1;
-            for (int k = 0; k < mul.length; ++k) v *= evaluate(mul[k], sx, vx);
-            return v;
-        }
-        String [] div = s.split("/");
-        if (div.length != 0) {
-            double v = evaluate(div[0], sx, vx);;
-            for (int k = 1; k < div.length; ++k) v /= evaluate(div[k], sx, vx);
-            return v;
-        }
-        String [] p = s.split("^");
-        if (p.length != 0) {
-            double v = evaluate(p[0], sx, vx);
-            for (int k = 1; k < p.length; ++k) v = Math.pow(v, evaluate(p[k], sx, vx));
-            return v;
-        }
-        if (s == sx) {
-            return vx;
-        }
-        // no idea what to do now
-        return 0;
-        */
+        String dx = Double.toString(vx);
+        String op = s.replace(sx, dx);
+        return calculateMath(op);
     }
 
     /**
