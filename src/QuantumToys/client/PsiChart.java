@@ -1,13 +1,18 @@
 package QuantumToys.client;
 
-import QuantumToys.client.SchroedingerCalculator;
+import QuantumToys.shared.SchroedingerCalculator;
 
 import com.googlecode.gchart.client.GChart;
 
 import java.util.*;
 
+/**
+ * Uses GChart to draw the results in the web page.
+ * @author Danilo Ferreira de Lima <daniloefl@gmail.com>
+ */
 public class PsiChart extends GChart {
 
+  // Constructor
   PsiChart() {
     setChartTitle("");
     setChartSize(800, 600);
@@ -76,6 +81,10 @@ public class PsiChart extends GChart {
     getY2Axis().setHasGridlines(true);
   }
 
+  /**
+   * Get wave function data and draw it.
+   * @param calc (required) Instance of the equation solver.
+   */
   public void getPsiData(SchroedingerCalculator calc) {
     double [] x = new double[calc.N];
     double [] psi = new double[calc.N];
@@ -92,6 +101,10 @@ public class PsiChart extends GChart {
     }
   }
 
+  /**
+   * Get potential and total energy data and draw it.
+   * @param calc (required) Instance of the equation solver.
+   */
   public void getEnergyData(SchroedingerCalculator calc) {
     double [] x = new double[calc.N];
     double [] potential = new double[calc.N];

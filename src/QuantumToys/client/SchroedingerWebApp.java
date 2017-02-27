@@ -2,6 +2,8 @@ package QuantumToys.client;
 
 import com.googlecode.gchart.client.GChart;
 
+import QuantumToys.shared.SchroedingerCalculator;
+
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -19,12 +21,19 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-import QuantumToys.client.SchroedingerCalculator;
-
 /**
- * Entry point classes define <code>onModuleLoad()</code>.
+ * This is the entry point for the web application.
+ * It solves the Schroedinger equation and shows results on the web.
+ * This is only the interface, while the actual equation solving code
+ * is in QuantumToys.shared.SchroedingerCalculator.
+ * @author Danilo Ferreira de Lima <daniloefl@gmail.com>
+ * @see QuantumToys.shared.SchroedingerCalculator
  */
 public class SchroedingerWebApp implements EntryPoint {
+
+  /**
+   * Labels and controls to be shown in the web page.
+   */
 
   CheckBox logGrid;
   Label labelConverge;
@@ -55,10 +64,20 @@ public class SchroedingerWebApp implements EntryPoint {
   Label labelAlpha;
   TextBox alpha;
 
+
+  /**
+   * Instance of the calculator class to solve equation
+   */
   SchroedingerCalculator m_calc;
 
+  /**
+   * Instance of the class used to draw results.
+   */
   PsiChart m_psiChart;
 
+  /**
+   * Updates the plot and the contents of all controls if needed.
+   */
   public void updatePlot() {
     n.setText(Integer.toString(m_calc.m_n));
     pot.setText(m_calc.exp_V_str);
@@ -73,7 +92,7 @@ public class SchroedingerWebApp implements EntryPoint {
     String text = "Energy = ";
     text = text + Double.toString(m_calc.E);
     text = text + " a.u. = ";
-    text = text + Double.toString(m_calc.E*SchroedingerCalculator.eV);
+    text = text + Double.toString(m_calc.E*m_calc.eV);
     text = text + " eV";
     labelEnergy.setText(text);
   }
@@ -154,7 +173,7 @@ public class SchroedingerWebApp implements EntryPoint {
     alpha = new TextBox();
     RootPanel.get("alpha").add(alpha);
 
-    m_calc = new SchroedingerCalculator();
+    m_calc = new SchroedingerCalculator(new GWTParser());
     m_calc.recalculate();
 
     GChart.setCanvasFactory(new GWTCanvasBasedCanvasFactory());
@@ -273,3 +292,4 @@ public class SchroedingerWebApp implements EntryPoint {
     pot.addKeyUpHandler(handler);
   }
 }
+

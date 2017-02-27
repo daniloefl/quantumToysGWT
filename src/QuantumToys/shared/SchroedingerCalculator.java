@@ -1,4 +1,4 @@
-package QuantumToys.client;
+package QuantumToys.shared;
 
 import java.util.*;
 
@@ -78,7 +78,12 @@ public class SchroedingerCalculator {
     /**
      * One electron-volt in Hartree atomic units.
      */
-    static double eV = 27.2113966413442;
+    public double eV = 27.2113966413442;
+
+    /**
+     * Object that implements mathematical expression parser.
+     */
+    public Parser m_p;
 
     /**
      * Number of nodes in the solution.
@@ -138,8 +143,8 @@ public class SchroedingerCalculator {
     /**
      * Minimum and maximum values of the potential (to help drawer).
      */
-    double Vmin;
-    double Vmax;
+    public double Vmin;
+    public double Vmax;
 
     /**
      * Minimum and maximum energy values to scan.
@@ -170,7 +175,8 @@ public class SchroedingerCalculator {
      * Constructor.
      * Sets x range, number of points, energy step and potential to default configurations.
      */
-    public SchroedingerCalculator() {
+    public SchroedingerCalculator(Parser p) {
+        m_p = p;
 	m_n = def_n;
 	setX(def_xmin, def_xmax, def_N);
 	m_iter = def_iter;
@@ -314,26 +320,6 @@ public class SchroedingerCalculator {
         m_n = n;
     }
 
-    /**
-     * Evaluates mathematical expression using JavaScript.
-     * @param op (required) String to evaluate with only numbers.
-     * @return The double result.
-     */
-    public native double calculateMath(String op) /*-{ return eval(op); }-*/;
-
-    /**
-     * Evaluates mathematical expression.
-     * @param s (required) Expression to evaluate.
-     * @param sx (required) Variable.
-     * @param vx (required) Value of x.
-     * @return Expression value for x = vx.
-     */
-    public double evaluate(String s, String sx, Double vx) {
-        // split string in sums or differences
-        String dx = Double.toString(vx);
-        String op = s.replace(sx, dx);
-        return calculateMath(op);
-    }
 
     /**
      * Recalculate the potential from a string.
@@ -350,12 +336,12 @@ public class SchroedingerCalculator {
         // therefore the x values stored are not what is read as "x" in the graphical version.
         for (int i = 0; i < N; ++i) {
 	    if (logGrid) {
-	        V[i] = evaluate(s, "x", Math.exp(x[i]));
+	        V[i] = m_p.evaluate(s, "x", Math.exp(x[i]));
 		if (V[i] == Double.NaN) {
 		    V[i] = 0;
 		}
 	    } else {
-	        V[i] = evaluate(s, "x", x[i]);
+	        V[i] = m_p.evaluate(s, "x", x[i]);
 		if (V[i] == Double.NaN) {
 		    V[i] = 0;
 		}

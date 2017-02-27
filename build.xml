@@ -10,6 +10,10 @@
     <pathelement location="war/WEB-INF/classes"/>
     <pathelement location="src/gchart.jar"/>
     <pathelement location="src/gwt-incubator.jar"/>
+    <pathelement location="src/jcommon-1.0.16.jar"/>
+    <pathelement location="src/jfreechart-1.0.13.jar"/>
+    <pathelement location="src/exp4j-0.4.8.jar"/>
+    <pathelement location="/usr/share/icedtea-web/netx.jar"/>
     <pathelement location="${gwt.sdk}/gwt-user.jar"/>
     <pathelement location="${gwt.sdk}/gwt-dev.jar"/>
     <pathelement location="${gwt.sdk}/validation-api-1.0.0.GA.jar"/>
@@ -27,9 +31,32 @@
     <!-- Add any additional server libs that need to be copied -->
   </target>
 
+  <target name="jws_javac" description="Compile java web start">
+    <mkdir dir="jws"/>
+    <javac srcdir="src" includes="**/shared/*.java,**/jws/*.java" encoding="utf-8"
+        destdir="jws"
+        source="1.7" target="1.7" nowarn="true"
+        debug="true" debuglevel="lines,vars,source">
+      <classpath refid="project.class.path"/>
+    </javac>
+    <copy todir="jws">
+      <fileset dir="src" excludes="**/*.java"/>
+    </copy>
+  </target>
+
+  <target name="jws" depends="jws_javac" description="Java web start">
+    <mkdir dir="jws_bin"/>
+    <jar destfile="jws_bin/SchroedingerSolver.jar" basedir="jws" manifest="addToManifest.txt">
+    </jar>
+    <copy todir="jws_bin" file="src/SchroedingerSolver.jnlp"/>
+    <copy todir="jws_bin" file="src/jcommon-1.0.16.jar"/>
+    <copy todir="jws_bin" file="src/jfreechart-1.0.13.jar"/>
+    <copy todir="jws_bin" file="src/exp4j-0.4.8.jar"/>
+  </target>
+
   <target name="javac" depends="libs" description="Compile java source to bytecode">
     <mkdir dir="war/WEB-INF/classes"/>
-    <javac srcdir="src" includes="**" encoding="utf-8"
+    <javac srcdir="src" includes="**/shared/*.java,**/client/*.java" encoding="utf-8"
         destdir="war/WEB-INF/classes"
         source="1.7" target="1.7" nowarn="true"
         debug="true" debuglevel="lines,vars,source">
@@ -72,74 +99,9 @@
     </java>
   </target>
 
-<!--
-Test targets suppressed because -junit argument was not specified when running webAppCreator.
+  <target name="build" depends="gwtc,jws" description="Build this project" />
 
-  <target name="javac.tests" depends="javac" description="Compiles test code">
-    <javac srcdir="test" includes="**" encoding="utf-8"
-      source="1.7" target="1.7" nowarn="true"
-      destdir="war/WEB-INF/classes"
-      debug="true" debuglevel="lines,vars,source">
-      <classpath location="path_to_the_junit_jar"/>
-      <classpath refid="project.class.path"/>
-    </javac>
-  </target>
-  
-  <target name="test.dev" depends="javac.tests" description="Run development mode tests">
-    <mkdir dir="reports/htmlunit.dev" />
-    <junit fork="yes" printsummary="yes" haltonfailure="yes" maxmemory="256m">
-      <sysproperty key="gwt.args" value="-devMode -logLevel WARN -war www-test" />
-      <sysproperty key="java.awt.headless" value="true" />
-      <classpath>
-        <pathelement location="src" />
-        <pathelement location="test" />
-        <path refid="project.class.path" />
-        <pathelement location="/home/daniloefl/workspace/gwt-2.8.0/validation-api-1.0.0.GA.jar" />
-        <pathelement location="/home/daniloefl/workspace/gwt-2.8.0/validation-api-1.0.0.GA-sources.jar" />
-        <pathelement location="path_to_the_junit_jar" />
-      </classpath>
-      <batchtest todir="reports/htmlunit.dev" >
-        <fileset dir="test" >
-          <include name="**/*Suite.java" />
-        </fileset>
-      </batchtest>
-      <formatter type="plain" />
-      <formatter type="xml" />
-    </junit>
-  </target>
-
-  <target name="test.prod" depends="javac.tests" description="Run production mode tests">
-    <mkdir dir="reports/htmlunit.prod" />
-    <junit fork="yes" printsummary="yes" haltonfailure="yes" maxmemory="256m">
-      <sysproperty key="gwt.args" value="-logLevel WARN -war www-test" />
-      <sysproperty key="java.awt.headless" value="true" />
-      <classpath>
-        <pathelement location="src" />
-        <pathelement location="test" />
-        <path refid="project.class.path" />
-        <pathelement location="/home/daniloefl/workspace/gwt-2.8.0/validation-api-1.0.0.GA.jar" />
-        <pathelement location="/home/daniloefl/workspace/gwt-2.8.0/validation-api-1.0.0.GA-sources.jar" />
-        <pathelement location="path_to_the_junit_jar" />
-      </classpath>
-      <batchtest todir="reports/htmlunit.prod" >
-        <fileset dir="test" >
-          <include name="**/*Suite.java" />
-        </fileset>
-      </batchtest>
-      <formatter type="plain" />
-      <formatter type="xml" />
-    </junit>
-  </target>
-
-  <target name="test" description="Run development and production mode tests">
-    <antcall target="test.dev" />
-    <antcall target="test.prod" />
-  </target>
--->
-
-  <target name="build" depends="gwtc" description="Build this project" />
-
-  <target name="war" depends="build" description="Create a war file">
+  <target name="war" depends="gwtc" description="Create a war file">
     <zip destfile="SchroedingerWebApp.war" basedir="war"/>
   </target>
 
@@ -148,16 +110,21 @@ Test targets suppressed because -junit argument was not specified when running w
     <delete dir="war/schroedingerwebapp" failonerror="false" />
   </target>
 
-  <target name="doc" description="Generate documentation">
+  <target name="doc" depends="jws" description="Generate documentation">
     <javadoc use="true" destdir="doc" additionalparam="--allow-script-in-comments" sourcepath="src/QuantumToys" excludepackagenames="com.google.gwt.user.client,com.google.gwt.widgetideas.graphics.client,com.googlecode.gchart.client">
       <header><![CDATA[
 <script type="text/javascript" async
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
     ]]></header>
-      <fileset dir="src/QuantumToys/client" includes="**/*.java" /> 
+      <fileset dir="src/QuantumToys" includes="**/*.java" /> 
       <classpath refid="project.class.path"/>
     </javadoc>
+    <copy todir="doc" file="jws_bin/SchroedingerSolver.jar"/>
+    <copy todir="doc" file="src/SchroedingerSolver.jnlp"/>
+    <copy todir="doc" file="src/jcommon-1.0.16.jar"/>
+    <copy todir="doc" file="src/jfreechart-1.0.13.jar"/>
+    <copy todir="doc" file="src/exp4j-0.4.8.jar"/>
   </target>
 
 </project>

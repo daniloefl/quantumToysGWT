@@ -1,0 +1,3 @@
+Permissions: sandbox
+Application-Name: SchroedingerSolver
+Codebase: https://daniloefl.github.io/
