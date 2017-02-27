@@ -149,7 +149,12 @@ Test targets suppressed because -junit argument was not specified when running w
   </target>
 
   <target name="doc" description="Generate documentation">
-    <javadoc destdir="doc" sourcepath="src/QuantumToys" excludepackagenames="com.google.gwt.user.client,com.google.gwt.widgetideas.graphics.client,com.googlecode.gchart.client">
+    <javadoc use="true" destdir="doc" additionalparam="--allow-script-in-comments" sourcepath="src/QuantumToys" excludepackagenames="com.google.gwt.user.client,com.google.gwt.widgetideas.graphics.client,com.googlecode.gchart.client">
+      <header><![CDATA[
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+    ]]></header>
       <fileset dir="src/QuantumToys/client" includes="**/*.java" /> 
       <classpath refid="project.class.path"/>
     </javadoc>
