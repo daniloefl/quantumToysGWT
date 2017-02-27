@@ -7,7 +7,7 @@ Web Start application, which can be loaded if the user has Java installed in his
 
 The Java Web Start application can be directly accessed from the documentation.
 You can see this in action by opening this link in a browser:
-<https://daniloefl.github.io/quantumToysGWT/SchroedingerSolver.jnlp>
+<https://daniloefl.github.io/quantumToysGWT/QuantumToys/SchroedingerSolver.jnlp>
 
 # Installing the Google Web Toolkit implementation
 
