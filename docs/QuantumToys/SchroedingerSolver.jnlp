@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0+" codebase="https://daniloefl.github.io/quantumToysGWT/QuantumToys" href="SchroedingerSolver.jnlp">
+	<information>
+		<title>Schroedinger Solver</title>
+		<vendor>Danilo Ferreira de Lima</vendor>
+		<homepage href="https://daniloefl.github.io/quantumToysGWT/QuantumToys/SchroedingerSolver.jnlp"/>
+		<description>Java Web Start application which solves a one-dimensional Schroedinger equation numericallyfor educational purposes.</description>
+	<offline-allowed/>
+	</information>
+	<resources>
+		<j2se version="1.6+" />
+		<jar href="SchroedingerSolver.jar" main="true" download="eager"/>
+		<jar href="jfreechart-1.0.13.jar"/>
+		<jar href="jcommon-1.0.16.jar"/>
+		<jar href="exp4j-0.4.8.jar"/>
+	</resources>
+	<application-desc main-class="QuantumToys.jws.SchroedingerSolver" width="800" height="650"/>
+</jnlp>
