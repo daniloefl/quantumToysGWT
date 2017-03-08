@@ -156,7 +156,7 @@ public class SchroedingerWebApp implements EntryPoint {
     RootPanel.get("labelPot").add(labelPot);
 
     pot = new TextBox();
-    pot.setWidth("10em");
+    pot.setWidth("20em");
     RootPanel.get("pot").add(pot);
 
     // Focus the cursor on the field when the app loads
