@@ -17,7 +17,7 @@ public class GWTParser extends Parser {
      * @param op (required) String to evaluate with only numbers.
      * @return The double result.
      */
-    public native double calculateMath(String op) /*-{ return eval(op); }-*/;
+    public native double calculateMath(String sx, String vx, String op) /*-{ eval(sx+"="+vx+";"); return eval(op); }-*/;
 
     /**
      * Evaluates mathematical expression.
@@ -29,8 +29,9 @@ public class GWTParser extends Parser {
     public double evaluate(String s, String sx, Double vx) {
         // split string in sums or differences
         String dx = Double.toString(vx);
-        String op = s.replace(sx, dx);
-        return calculateMath(op);
+        double y = 0;
+        y = calculateMath(sx, dx, s);
+        return y;
     }
 
 }
