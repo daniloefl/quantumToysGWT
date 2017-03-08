@@ -118,6 +118,7 @@ public class SchroedingerWebApp implements EntryPoint {
     RootPanel.get("labelXmin").add(labelXmin);
 
     xmin = new TextBox();
+    xmin.setWidth("1em");
     RootPanel.get("xmin").add(xmin);
 
     labelXmax = new Label();
@@ -125,6 +126,7 @@ public class SchroedingerWebApp implements EntryPoint {
     RootPanel.get("labelXmax").add(labelXmax);
 
     xmax = new TextBox();
+    xmax.setWidth("1em");
     RootPanel.get("xmax").add(xmax);
 
     labelNpoints = new Label();
@@ -132,6 +134,7 @@ public class SchroedingerWebApp implements EntryPoint {
     RootPanel.get("labelNpoints").add(labelNpoints);
 
     Npoints = new TextBox();
+    Npoints.setWidth("1em");
     RootPanel.get("Npoints").add(Npoints);
 
     go = new Button("Update");
@@ -145,6 +148,7 @@ public class SchroedingerWebApp implements EntryPoint {
     RootPanel.get("labelN").add(labelN);
 
     n = new TextBox();
+    n.setWidth("1em");
     RootPanel.get("n").add(n);
 
     labelPot = new Label();
@@ -152,6 +156,7 @@ public class SchroedingerWebApp implements EntryPoint {
     RootPanel.get("labelPot").add(labelPot);
 
     pot = new TextBox();
+    pot.setWidth("4em");
     RootPanel.get("pot").add(pot);
 
     // Focus the cursor on the field when the app loads
@@ -164,6 +169,7 @@ public class SchroedingerWebApp implements EntryPoint {
     RootPanel.get("labelIter").add(labelIter);
 
     iter = new TextBox();
+    iter.setWidth("1em");
     RootPanel.get("iter").add(iter);
 
     labelAlpha = new Label();
@@ -171,6 +177,7 @@ public class SchroedingerWebApp implements EntryPoint {
     RootPanel.get("labelAlpha").add(labelAlpha);
 
     alpha = new TextBox();
+    alpha.setWidth("1em");
     RootPanel.get("alpha").add(alpha);
 
     m_calc = new SchroedingerCalculator(new GWTParser());
