@@ -15,7 +15,7 @@ public class PsiChart extends GChart {
   // Constructor
   PsiChart() {
     setChartTitle("");
-    setChartSize(800, 600);
+    setChartSize(400, 300);
     setLegendYShift(-150);
 
     addCurve();
