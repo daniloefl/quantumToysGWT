@@ -112,7 +112,7 @@ public class SchroedingerCalculator {
      */
     public double def_xmin = -8;
     public double def_xmax = 8;
-    public int def_N = 1000;
+    public int def_N = 200;
     public String def_pot = "x*x*0.5";
     public int def_n = 0;
     public int def_iter = 100;
